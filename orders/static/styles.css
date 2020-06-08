@@ -1,0 +1,64 @@
+.navbar-custom {
+    background-color: #ff5500;
+}
+
+/* Change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,.8);
+}
+
+/* Change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(255,255,255,.5);
+}
+
+/* Change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #ffffff;
+}
+
+body {
+    background-image: url("bg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.bg-main {
+    background-color: rgba(255, 255, 255, .9);
+    border-radius:.25rem!important
+}
+
+#div_toasts {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 100;
+}
+
+.bd-example-modal-lg .modal-dialog {
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+}
+  
+.bd-example-modal-lg .modal-dialog .modal-content {
+    background-color: transparent;
+    border: none;
+}
+
+.toast-header {
+    background-color: rgba(255, 255, 255, .9);
+    color: black;
+}
+
+.toast-body {
+    background-color: rgba(255, 255, 255, .9);
+}
+
+.clickable {
+    cursor: pointer;
+}

@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block scripts %}
+    <script src="{% static 'orders.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    {% load tz %}
+    <div class="container mt-4 mb-4 p-3 bg-main">
+        <h4>Your orders</h4>
+        {% if data.orders %}
+            <div class="accordion" id="accordion"></div>
+                {% for order in data.orders %}
+                <div class="card">
+                    <div class="card-header" id="heading{{order.id}}">
+                        <button class="btn btn-light p-0 w-100" data-toggle="collapse" data-target="#collapse{{order.id}}" aria-expanded="false" aria-controls="collapse{{order.id}}" onclick="this.blur();">
+                            <div class="float-left pr-5">Order #{{order.id}}</div>
+                            <div class="float-left pr-5">{{order.placed_at|localtime}}</div>
+                            <div class="float-left">{% if order.finished %}Delivered{% else %}In progress{% endif %}</div>
+                            <div class="float-right pl-2"><i class="fa fa-chevron-down"></i></div>
+                        </button>
+                    </div>
+                    <div id="collapse{{order.id}}" class="collapse" data-order={{order.id}} aria-labelledby="heading{{order.id}}" data-parent="#accordion">
+                        <div id="card{{order.id}}" class="card-body" data-loaded=false>
+                            <div class="text-center">
+                                <span class="fa fa-spinner fa-spin fa-3x"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            You have no orders yet! Time to change it!
+        {% endif %}
+    </div>
+{% endblock %}

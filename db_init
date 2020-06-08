@@ -1,0 +1,104 @@
+# run from shell
+
+from orders.models import *
+
+regular_pizza = [{'name': 'Cheese', 'toppings': 0},
+                {'name': '1 topping', 'toppings': 1},
+                {'name': '2 toppings', 'toppings': 2},
+                {'name': '3 toppings', 'toppings': 3},
+                {'name': 'Special', 'toppings': 5}]
+
+sicilian_pizza = [{'name': 'Cheese', 'toppings': 0},
+                {'name': '1 item', 'toppings': 1},
+                {'name': '2 items', 'toppings': 2},
+                {'name': '3 items', 'toppings': 3},
+                {'name': 'Special', 'toppings': 5}]
+
+toppings = ['Pepperoni',
+            'Sausage',
+            'Mushrooms',
+            'Onions',
+            'Ham',
+            'Canadian Bacon',
+            'Pineapple',
+            'Eggplant',
+            'Tomato & Basil',
+            'Green Peppers',
+            'Hamburger',
+            'Spinach',
+            'Artichoke',
+            'Buffalo Chicken',
+            'Barbecue Chicken',
+            'Anchovies',
+            'Black Olives',
+            'Fresh Garlic',
+            'Zucchini']
+
+subs = [{'name': 'Cheese'},
+        {'name': 'Italian'},
+        {'name': 'Ham + Cheese'},
+        {'name': 'Meatball'},
+        {'name': 'Tuna'},
+        {'name': 'Turkey'},
+        {'name': 'Chicken Parmigiana'},
+        {'name': 'Eggplant Parmigiana'},
+        {'name': 'Steak'},
+        {'name': 'Steak + Cheese'},
+        {'name': 'Sausage, Peppers & Onions'},
+        {'name': 'Hamburger'},
+        {'name': 'Cheeseburger'},
+        {'name': 'Fried Chicken'},
+        {'name': 'Veggie'}]
+
+sub_extras = [{'name': 'Extra Cheese'},
+            {'name': 'Mushrooms'},
+            {'name': 'Green Peppers'},
+            {'name': 'Onions'}]
+
+pasta = [{'name': 'Baked Ziti w/Mozzarella'},
+            {'name': 'Baked Ziti w/Meatballs'},
+            {'name': 'Baked Ziti w/Chicken'}]
+
+salads = [{'name': 'Garden Salad'},
+        {'name': 'Greek Salad'},
+        {'name': 'Antipasto'},
+        {'name': 'Salad w/Tuna'}]
+
+platters = [{'name': 'Garden Salad', 'toppings': 0},
+                {'name': 'Greek Salad', 'toppings': 1},
+                {'name': 'Antipasto', 'toppings': 2},
+                {'name': 'Baked Ziti', 'toppings': 2},
+                {'name': 'Meatball Parm', 'toppings': 3},
+                {'name': 'Chicken Parm', 'toppings': 5}]
+    
+for item in regular_pizza:
+    entry = RegularPizza(name=item['name'], toppings_no=item['toppings'])
+    entry.save()
+
+for item in sicilian_pizza:
+    entry = SicilianPizza(name=item['name'], toppings_no=item['toppings'])
+    entry.save()
+
+for item in toppings:
+    entry = Topping(name=item)
+    entry.save()
+
+for item in subs:
+    entry = Sub(name=item['name'])
+    entry.save()
+
+for item in sub_extras:
+    entry = SubExtra(name=item['name'])
+    entry.save()
+
+for item in pasta:
+    entry = Pasta(name=item['name'])
+    entry.save()
+
+for item in salads:
+    entry = Salad(name=item['name'])
+    entry.save()
+
+for item in platters:
+    entry = DinnerPlatter(name=item['name'])
+    entry.save()

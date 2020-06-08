@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block scripts %}
+    {{ data.menu|json_script:"menu_json" }}
+    {{ data.sizes|json_script:"sizes_json" }}
+    {{ data.prices|json_script:"prices_json" }}
+    <script src="{% static 'cart.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4 mb-4 p-3 bg-main">
+        <h4>Your cart</h4>
+        {% if data.cart %}
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 55%">Item</th>
+                    <th scope="col" class="text-center" style="width: 15%">Size</th>
+                    <th scope="col" class="text-center" style="width: 15%">Price</th>
+                    <th scope="col" class="text-center" style="width: 15%">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in data.cart.items %}
+                <tr>
+                    <td>{% for item in value %}<span class="span-item-name" data-item_no={{ item }}></span><br>{% endfor %}</td>
+                    <td class="text-center"><span class="span-item-size" data-item_no={{ value.0 }}></span><br></td>
+                    <td class="text-center">{% for item in value %}<span class="span-item-price" data-item_no={{ item }}></span><br>{% endfor %}</td>
+                    <td class="text-center"><input type="checkbox" class="deletion-list-checkbox" value={{ key }}></td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td></td><td></td>
+                    <td class="text-center"><strong>Total</strong></td>
+                    <td class="text-center"><strong>Select all</strong></td>
+                </tr> 
+                <tr>
+                    <td></td><td></td>
+                    <td class="text-center"><span id="span-total-price"></span></td>
+                    <td class="text-center"><input type="checkbox" id="select-all-checkbox" onClick="selectAllBoxes()"></td>
+                </tr> 
+                <tr>
+                    <td></td><td></td>
+                    <td class="text-center"><button type="button" id="order_button" class="btn btn-success" style="width: 100%" onClick="placeOrder()">Order</button></td>
+                    <td class="text-center"><button type="button" id="delete_button" class="btn btn-danger" style="width: 100%" onClick="deleteCurrentCartItems()">Delete</button></td>
+                </tr>                    
+            </tbody>
+        </table>
+        {% else %}
+            Your cart is empty!
+        {% endif %}
+    </div>
+    <!-- Loader modal -->
+    <div class="modal fade bd-example-modal-lg" id="loader" data-backdrop="static" data-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" style="width: 48px">
+                <span class="fa fa-spinner fa-spin fa-3x"></span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
